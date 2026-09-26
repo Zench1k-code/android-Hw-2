@@ -1,21 +1,23 @@
-fun main() {
-    printFinalTemperature(27.0, "Celsius", "Fahrenheit") { celsius ->
-        (9.0 / 5.0) * celsius + 32
-    }
-    printFinalTemperature(350.0, "Kelvin", "Celsius") { kelvin ->
-        kelvin - 273.15
-    }
-    printFinalTemperature(10.0, "Fahrenheit", "Kelvin") { fahrenheit ->
-        (5.0 / 9.0) * (fahrenheit - 32) + 273.15
+class Song(
+    val title: String,
+    val artist: String,
+    val releaseYear: Int,
+    val playCount: Int
+) {
+    val isPopular: Boolean = playCount >= 1000
+
+    fun description() {
+        println("$title, performed by $artist, was released in $releaseYear.")
     }
 }
 
-fun printFinalTemperature(
-    initialMeasurement: Double,
-    initialUnit: String,
-    finalUnit: String,
-    conversionFormula: (Double) -> Double
-) {
-    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement))
-    println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
+fun main() {
+    val song1 = Song("The boy is mine", "Ben Delay", 2016, 5000000)
+    val song2 = Song("My Local Song", "Unknown Artist", 2024, 500)
+
+    song1.description()
+    println("Is popular: ${song1.isPopular}")
+
+    song2.description()
+    println("Is popular: ${song2.isPopular}")
 }
